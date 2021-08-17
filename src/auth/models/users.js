@@ -19,7 +19,7 @@ const userModel = (sequelize, DataTypes) => {
         let token = jwt.sign(tokenObj, SECRET);
         return token;
       }
-    },
+    }, 
     capabilities: {
       type: DataTypes.VIRTUAL,
       get() {
