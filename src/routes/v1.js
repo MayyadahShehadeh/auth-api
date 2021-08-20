@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const dataModules = require('../models');
+const dataModules = require('../auth/models');
 
 const router = express.Router();
 
@@ -16,6 +16,9 @@ router.param('model', (req, res, next) => {
   }
 });
 
+router.get ('/',(req,res)=>{
+  res.send('tesst');
+})
 router.get('/:model', handleGetAll);
 router.get('/:model/:id', handleGetOne);
 router.post('/:model', handleCreate);
@@ -34,6 +37,7 @@ async function handleGetOne(req, res) {
 }
 
 async function handleCreate(req, res) {
+  console.log(req.body);
   let obj = req.body;
   let newRecord = await req.model.create(obj);
   res.status(201).json(newRecord);
